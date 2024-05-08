@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const os = require('os');
-const _SECONDS  = 5000
+const _SECONDS  = 20000
 
 // Count connections
 const countConnect = () => {
@@ -15,8 +15,8 @@ const checkOverload = () => {
         const numConnections = countConnect();
         const numCores = os.cpus().length;
         const memoryUsage = process.memoryUsage().rss;
-        console.log(`Active connections:: ${numConnections}`);  
-        console.log(`Memory usage:: ${memoryUsage / 1024 / 1024} MB`);
+        console.log(`Active mongodb connections:: ${numConnections}`);  
+        console.log(`Memory usage of server:: ${memoryUsage / 1024 / 1024} MB`);
         //Example maximum number of connections based on number of cores
         const maximumConnections = numCores * 5;
 

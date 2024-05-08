@@ -29,6 +29,10 @@ var shopSchema = new mongoose.Schema({
         enum: ['active', 'inactive'],
         default: false
     },
+    roles: {
+        type: Array,
+        default: []
+    }
 },{
     timestamps: true,
     collection: COLLECTION_NAME

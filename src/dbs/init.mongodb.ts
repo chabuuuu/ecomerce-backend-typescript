@@ -3,9 +3,11 @@ import { configs } from "@/configs/config.mongodb";
 const {db: {host, name, port}} = configs;
 
 const connectString = `mongodb://${host}:${port}/${name}`
+console.log('connectString', connectString);
+
 
 class Database{
-    static instance: Database;
+    static instance: any = null;
     constructor(){
         this.connect();
     }
@@ -25,8 +27,8 @@ class Database{
         .catch((err : any) => console.log("Error connecting to mongodb"));
     }
     
-    static getInstance(){   
-        if (!Database){
+    static getInstance(){           
+        if (!Database.instance){
             Database.instance = new Database();
         }
         return Database.instance;
@@ -34,4 +36,4 @@ class Database{
 }
 
 const mongodbInstance = Database.getInstance();
-module.exports = mongodbInstance;
+export default mongodbInstance;
